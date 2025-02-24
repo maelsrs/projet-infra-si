@@ -10,5 +10,4 @@ RUN apt-get update && \
 
 EXPOSE 80
 
-# Utiliser un script pour démarrer Nginx en arrière-plan et lancer un shell
 CMD service nginx start && bash
