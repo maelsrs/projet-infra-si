@@ -4,5 +4,17 @@
 
 # Instructions
 
-Le projet consiste a créer un serveur Web sous HTTPS disponible sur un nom de domaine personnalisé, composé de sous domaines avec différents services (blog, etc..)
+Le projet consiste a créer plusieurs services Web sous HTTPS disponibles sur un nom de domaine personnalisé, chaque sous domaine ayant un service différent (image host, blog, etc..)
+
+# Les services
+
+* Le site principal `https://x.x`
+
+* L'image host: `https://host.x.x`
+
+* Le Wekan (clone de Trello) `https://wekan.x.x`
+
+* Le VPN: `x`
+
+# Installation
 

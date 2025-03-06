@@ -1,2 +1,2 @@
-docker build -t projet-si .
-docker run -p 80:80 -it projet-si
+docker compose down
+docker compose up --build

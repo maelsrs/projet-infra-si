@@ -1,0 +1,35 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      - "3000:3000"
+    volumes:
+      - ./wekan/data/attachments:/data/attachments
+    restart: always
+
+  wekan:
+    image: quay.io/wekan/wekan:v7.81
+    container_name: wekan
+    environment:
+      - MONGO_URL=mongodb://wekandb:27017/wekan
+      - ROOT_URL=http://localhost:8080
+      - WITH_API=true
+    volumes:
+      - ./wekan/wekan_data:/data
+    ports:
+      - "8080:8080"
+    depends_on:
+      - wekandb
+    restart: unless-stopped
+
+  wekandb:
+    image: mongo:latest
+    container_name: wekandb
+    volumes:
+      - ./wekan/wekan-db:/data/db
+      - ./wekan/wekan-db-dump:/dump
+    command: mongod --logpath /dev/null --oplogSize 128 --quiet
+    restart: unless-stopped
