@@ -17,12 +17,12 @@ http {
     default_type application/octet-stream;
 
     access_log /var/log/nginx/access.log;
-    error_log /var/log/nginx/error.log;
+    error_log /var/log/nginx/error.log debug;
 
     gzip on;
 
+    # For local development/testing, enable HTTP
     server {
-        listen 80;
         server_name ${MAIN_DOMAIN} www.${MAIN_DOMAIN} ${WEKAN_SUBDOMAIN};
         
         # Allow Let's Encrypt validation

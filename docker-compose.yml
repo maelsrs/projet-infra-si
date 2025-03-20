@@ -6,9 +6,12 @@ services:
     ports:
       - "80:80"
       - "3000:3000"
+      - "443:443"
     volumes:
       - ./wekan/data/attachments:/data/attachments
       - ./.env:/app/.env
+      - ./ssl/certs:/etc/letsencrypt
+      - ./ssl/www:/var/www/certbot
     environment:
       - MAIN_DOMAIN=${MAIN_DOMAIN:-projetinfrasi.fr}
       - WEKAN_SUBDOMAIN=${WEKAN_SUBDOMAIN:-wekan.projetinfrasi.fr}
@@ -69,6 +72,17 @@ services:
     restart: unless-stopped
     networks:
       - app-network
+
+  certbot:
+    image: certbot/certbot:latest
+    container_name: certbot
+    volumes:
+      - ./ssl/certs:/etc/letsencrypt
+      - ./ssl/www:/var/www/certbot
+    depends_on:
+      - web
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    restart: unless-stopped
 
 networks:
   app-network:
