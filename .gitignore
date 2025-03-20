@@ -51,3 +51,10 @@ target/
 
 wekan/*
 wekan/
+wireguard/
+wireguard/*
+
+nginx.conf
+backend/main
+wireguard/config
+wireguard/config/*

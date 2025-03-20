@@ -8,7 +8,13 @@ services:
       - "3000:3000"
     volumes:
       - ./wekan/data/attachments:/data/attachments
+      - ./.env:/app/.env
+    environment:
+      - MAIN_DOMAIN=${MAIN_DOMAIN:-projetinfrasi.fr}
+      - WEKAN_SUBDOMAIN=${WEKAN_SUBDOMAIN:-wekan.projetinfrasi.fr}
     restart: always
+    networks:
+      - app-network
     
   wireguard:
     image: linuxserver/wireguard:latest
@@ -41,7 +47,7 @@ services:
     container_name: wekan
     environment:
       - MONGO_URL=mongodb://wekandb:27017/wekan
-      - ROOT_URL=http://localhost:8080
+      - ROOT_URL=http://${WEKAN_SUBDOMAIN:-wekan.projetinfrasi.fr}
       - WITH_API=true
     volumes:
       - ./wekan/wekan_data:/data
@@ -50,6 +56,8 @@ services:
     depends_on:
       - wekandb
     restart: unless-stopped
+    networks:
+      - app-network
 
   wekandb:
     image: mongo:latest
@@ -59,3 +67,9 @@ services:
       - ./wekan/wekan-db-dump:/dump
     command: mongod --logpath /dev/null --oplogSize 128 --quiet
     restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
