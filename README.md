@@ -27,8 +27,8 @@ Le projet consiste a créer plusieurs services Web sous HTTPS disponibles sur un
 Le projet utilise un système de configuration pour les noms de domaine via un fichier `.env`. Cela permet de changer facilement les domaines sans modifier le code :
 
 ```
-MAIN_DOMAIN=projetinfrasi.fr
-WEKAN_SUBDOMAIN=wekan.projetinfrasi.fr
+MAIN_DOMAIN=xxx.fr
+WEKAN_SUBDOMAIN=wekan.xxx.fr
 ```
 
 # Installation
@@ -49,8 +49,8 @@ WEKAN_SUBDOMAIN=wekan.projetinfrasi.fr
 
 2. Configurez le fichier `.env` avec vos domaines (ou utilisez les valeurs par défaut) :
    ```
-   MAIN_DOMAIN=projetinfrasi.fr
-   WEKAN_SUBDOMAIN=wekan.projetinfrasi.fr
+   MAIN_DOMAIN=xxx.fr
+   WEKAN_SUBDOMAIN=wekan.xxx.fr
    ```
 
 3. Exécutez le script de démarrage :
@@ -65,9 +65,9 @@ WEKAN_SUBDOMAIN=wekan.projetinfrasi.fr
 
 4. **Local**: Ajoutez les entrées dans votre fichier hosts :
    ```
-   127.0.0.1 projetinfrasi.fr
-   127.0.0.1 wekan.projetinfrasi.fr
-   127.0.0.1 www.projetinfrasi.fr
+   127.0.0.1 xxx.fr
+   127.0.0.1 wekan.xxx.fr
+   127.0.0.1 www.xxx.fr
    ```
    - Sur Windows : modifiez `C:\Windows\System32\drivers\etc\hosts`
    - Sur Linux/macOS : modifiez `/etc/hosts` (avec sudo)
@@ -76,9 +76,9 @@ WEKAN_SUBDOMAIN=wekan.projetinfrasi.fr
 
 Une fois les conteneurs démarrés et le fichier hosts configuré, vous pouvez accéder aux services :
 
-- Site principal : http://projetinfrasi.fr
-- Wekan : http://wekan.projetinfrasi.fr
-- API d'upload : http://projetinfrasi.fr/api/upload (POST pour télécharger des images)
+- Site principal : http://xxx.fr
+- Wekan : http://wekan.xxx.fr
+- API d'upload : http://xxx.fr/api/upload (POST pour télécharger des images)
 
 ## Configuration du VPN Wireguard
 
